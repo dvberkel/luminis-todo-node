@@ -2,6 +2,7 @@
     "name" : "Luminis-TODO-Server",
     "version" : "0.0.0",
     "scripts" : {
+        "start" : "./node_modules/.bin/express ./app.js",
         "test" : "./node_modules/.bin/mocha spec/*"
     },
     "dependencies" : {
