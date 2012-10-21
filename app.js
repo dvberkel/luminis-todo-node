@@ -1,8 +1,10 @@
 var express = require('express');
+var route = require('./route');
+
 var app = express();
 
-app.get('/', function(req, res){
-    res.json({ message : 'hello world' });
-});
+app.set('port', process.env.PORT);
 
-app.listen(process.env.PORT);
+app.get('/', route.allTodoLists);
+
+app.listen(app.get('port'));
