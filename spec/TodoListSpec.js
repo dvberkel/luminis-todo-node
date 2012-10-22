@@ -18,4 +18,13 @@ describe('Todo List', function(){
         
         assert.equal(repo.size(), 1);
     });
+    
+    it('should allow to retrieve elements on id', function(){
+        var repo = new TodoList();
+        repo.add({ "id" : "needle" });
+
+	var result = repo.where({ 'id' : 'needle'});
+        
+        assert.equal(repo.length, 1);
+    });
 });

@@ -14,6 +14,23 @@ exports.retrieveTodoList = function(req, res, next, id) {
     });
 }
 
+exports.retrieveTodo = function(req, res, next, id) {
+    var todoList = req.todoList;
+    if(todoList) {
+	var todos = todoList.where({ 'id' : id });
+	console.log(id);
+	console.log(todos.length);
+	if (todos.length === 1) {
+	    req.todo = todos[0];
+	    next();
+	} else {
+	    next(new Error("Wrong number of todos"));
+	}
+    } else {
+	next(new Error("todoList not found"));
+    }
+}
+
 exports.allTodoLists = function(req, res) {
     var ids = [];
     repo.all(function(element, id){ ids.push(id); });
@@ -34,4 +51,8 @@ exports.allTodos = function(req, res) {
 exports.createTodo = function(req, res) {
     req.todoList.add(req.body);
     res.json(req.body);
+}
+
+exports.todo = function(req, res) {
+    res.json(req.todo.toJSON());
 }
