@@ -24,5 +24,17 @@ describe('A Repository', function(){
             
             assert.ok(list != null);
         });
+        
+        it('should accept a callback', function(){
+            var repo = new repository.local();
+            var id = repo.store(new TodoList());
+            
+	    var list;
+            repo.retrieve(id, function(err, todoList){
+		list = todoList;
+	    });
+            
+            assert.ok(list != null);
+        });
     });
 });
