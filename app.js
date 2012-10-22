@@ -3,7 +3,7 @@ var route = require('./route');
 
 var app = express();
 
-app.set('port', process.env.PORT);
+app.set('port', process.env.PORT || 3000);
 
 app.get('/', route.allTodoLists);
 app.post('/', route.createTodoList);
